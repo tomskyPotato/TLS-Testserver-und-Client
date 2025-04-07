@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 # Um die Session über das Terminal zu killen: sudo lsof -i :5000
 HOST = "0.0.0.0"
-PORT = 5000
+PORT = 5690
 
 def create_server_hello():
     # Create a ServerHello message
