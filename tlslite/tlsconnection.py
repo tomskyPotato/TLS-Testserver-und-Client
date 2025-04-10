@@ -40,6 +40,20 @@ from .handshakehelpers import HandshakeHelpers
 from .utils.cipherfactory import createAESCCM, createAESCCM_8, \
         createAESGCM, createCHACHA20
 from .utils.compression import choose_compression_send_algo
+import logging
+
+# Configure a logger for handshake logging
+logger = logging.getLogger("handshake_logger")
+logger.setLevel(logging.DEBUG)
+logger.propagate = False
+
+# Add a handler to output logs to the console
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+# Add the handlers to the logger
+logger.addHandler(console_handler)
 
 class TLSConnection(TLSRecordLayer):
     """
@@ -2258,6 +2272,8 @@ class TLSConnection(TLSRecordLayer):
                                     sni):
 
         self._handshakeStart(client=False)
+
+        logger.debug("Starting server-side handshake")
 
         if not settings:
             settings = HandshakeSettings()

@@ -7,6 +7,7 @@ from tlslite.constants import HandshakeType, ExtensionType
 
 # Debug mode
 import logging
+
 logging.basicConfig(level=logging.DEBUG)
 
 # Um die Session über das Terminal zu killen: sudo lsof -i :5000
